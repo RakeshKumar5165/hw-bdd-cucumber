@@ -18,9 +18,18 @@ end
 #   on the same page
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+  
+  temp = page.first(:css, 'tr', text: e1)
+  element_1_row = temp.path.match(/tr\[(\d+)\]/)
+  temp = page.first(:css, 'tr', text: e2)
+  element_2_row = temp.path.match(/tr\[(\d+)\]/)
+  
+  if (element_1_row[1].to_i > element_2_row[1].to_i)
+    fail "not sorted properly"
+  end
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  fail "Unimplemented"
+  # fail "Unimplemented"
 end
 
 # Make it easier to express checking or unchecking several boxes at once
@@ -54,7 +63,6 @@ Then /I should see all the movies/ do
 end
 
 Then /I should (not )?see movies only of following ratings: "(.*)"/ do |no,rating_list|
-
   ratings_arr = rating_list.split
   map = ratings_arr.map{ |rating| [rating, 1] }.to_h
   custom_path = "//table[@id='movies']/tbody//td[2]"
@@ -66,3 +74,9 @@ Then /I should (not )?see movies only of following ratings: "(.*)"/ do |no,ratin
     end
   end
 end
+
+# Then /I should see "(.*)" before "(.*)"/ do |first, second|
+  
+#   # page.find(:css, 'td.id', text: /^22$/)
+#   expect(page).to have_content('Hello World')
+# end
