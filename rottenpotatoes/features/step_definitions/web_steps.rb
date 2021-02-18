@@ -217,6 +217,9 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, pa
 end
 
 Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label, parent|
+    puts "lololololol"
+    puts parent
+  
   with_scope(parent) do
     field_checked = find_field(label)['checked']
     if field_checked.respond_to? :should
