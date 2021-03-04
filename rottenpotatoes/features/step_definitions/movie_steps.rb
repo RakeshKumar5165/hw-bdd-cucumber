@@ -56,13 +56,13 @@ Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
   
 
-  unless (page.all(:css, 'table tr').size==11)
+  unless (page.all(:css, 'table tr').size==11) #11 because header is also counted
     fail "Number of movies doesn't match"
   end
   # fail "Unimplemented"
 end
 
-Then /I should (not )?see movies only of following ratings: "(.*)"/ do |no,rating_list|
+Then /I should (not )?see movies of following ratings: "(.*)"/ do |no,rating_list|
   ratings_arr = rating_list.split
   map = ratings_arr.map{ |rating| [rating, 1] }.to_h
   custom_path = "//table[@id='movies']/tbody//td[2]"

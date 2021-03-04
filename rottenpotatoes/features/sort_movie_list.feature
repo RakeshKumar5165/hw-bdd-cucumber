@@ -24,13 +24,19 @@ Background: movies have been added to database
 
 Scenario: sort movies alphabetically
   When I follow "Movie Title"
-  Then I should see "The Incredibles" before "The Terminator"
+  Then I should be on the RottenPotatoes home page
+  And I should see "The Incredibles" before "The Terminator"
   And I should see "Raiders of the Lost Ark" before "When Harry Met Sally"
+  And I should see "Aladdin" before "Chicken Run"
+  And I should see "The Help" before "The Incredibles"
   # your steps here
 
 Scenario: sort movies in increasing order of release date
   When I follow "Release Date"
-  Then I should see "1981-06-12 00:00:00 UTC" before "1984-10-26 00:00:00 UTC"
+  Then I should be on the RottenPotatoes home page
+  And I should see "1981-06-12 00:00:00 UTC" before "1984-10-26 00:00:00 UTC"
   And I should see "1989-07-21 00:00:00 UTC" before "2001-04-25 00:00:00 UTC"
+  And I should see "2001-04-25 00:00:00 UTC" before "2011-08-10 00:00:00 UTC"
+  And I should see "1992-11-25 00:00:00 UTC" before "2011-08-10 00:00:00 UTC"
   
   # your steps here
